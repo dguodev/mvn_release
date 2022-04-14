@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v2
         with:
-          ref: ${{ $GITHUB_REF }}
+          ref: $GITHUB_REF
 
       - name: Cache local Maven repository
         uses: actions/cache@v2
