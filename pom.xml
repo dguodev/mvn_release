@@ -5,7 +5,7 @@
 
     <groupId>sample.dguo.dev</groupId>
     <artifactId>mvn_release</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
 
     <name>mvn_release</name>
     <!-- FIXME change it to the project's website -->
@@ -76,6 +76,6 @@
         <connection>scm:git:https://github.com/dguodev/mvn_release.git</connection>
         <url>scm:git:https://github.com/dguodev/mvn_release.git</url>
         <developerConnection>scm:git:https://github.com/dguodev/mvn_release.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>mvn_release-1.1</tag>
   </scm>
 </project>
