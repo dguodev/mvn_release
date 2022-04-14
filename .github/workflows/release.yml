@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Show environment v1
+        run: env |
       - name: Checkout Source Code
         uses: actions/checkout@v2
         with:
