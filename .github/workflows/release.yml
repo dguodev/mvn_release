@@ -2,9 +2,6 @@ name: Release
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        required: true
-        default: "master"
       releaseVersion:
         required: true
       developmentVersion:
@@ -18,7 +15,7 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.branch }}
+          ref: ${{ $GITHUB_REF }}
 
       - name: Cache local Maven repository
         uses: actions/cache@v2
