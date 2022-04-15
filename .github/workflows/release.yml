@@ -82,5 +82,7 @@ jobs:
           body: |
             Release Date : 
             Relaese By: ${{github.actor}}
-            Change Environment Deployment : 
-            Push change: [dasdf](url)
+            SHA: ${{github.sha}}
+            Image: 
+            Change Environment Deployment : [link](url) 
+            Push change: [link](url)
