@@ -6,8 +6,8 @@ on:
         type: choice
         description: chose module to release
         options:
-          - camel
-          - cs1plus
+          - module1
+          - module2
         required: true
       releaseVersion:
         description: Release version
@@ -73,6 +73,5 @@ jobs:
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t public.ecr.aws/w4s5i2w7/akamark:abc .
-          docker build -t public.ecr.aws/w4s5i2w7/akamark:latest .
+          docker build -t public.ecr.aws/w4s5i2w7/akamark:${{ github.event.inputs.module }}_${{ github.event.inputs.releaseVersion }} .          
           docker push --all-tags public.ecr.aws/w4s5i2w7/akamark
