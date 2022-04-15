@@ -79,4 +79,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: mvn_release-${{ github.event.inputs.releaseVersion }}
-          body: this is body
+          body: this is body [dasdf](url)
