@@ -75,3 +75,8 @@ jobs:
         run: |
           docker build -t public.ecr.aws/w4s5i2w7/akamark:${{ github.event.inputs.module }}_${{ github.event.inputs.releaseVersion }} .          
           docker push --all-tags public.ecr.aws/w4s5i2w7/akamark
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: mvn_release-${{ github.event.inputs.releaseVersion }}
+          body: this is body
