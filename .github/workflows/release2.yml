@@ -12,6 +12,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:      
+      - name: Checkout Source Code
+        uses: actions/checkout@v2
       - name: Configure Git User
         run: |
           git config user.email "actions@github.com"
