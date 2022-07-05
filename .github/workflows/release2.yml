@@ -9,6 +9,7 @@ on:
       developmentVersion:
         description: Post release development version
         required: true
+        default: ""
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -33,6 +34,11 @@ jobs:
       - name: Update to development version
         run: |
           sed -i ':a;N;$!ba; s|<revision>.*<\/revision>|<revision>${{ github.event.inputs.developmentVersion }}<\/revision>|g' diameter/pom.xml
+          NextReleaseVersion=$(echo ${{ developmentVersion }} |sed 's/-Snapshot//g')
+          NextDevVersion=$(echo $NextReleaseVersion|awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{$NF=sprintf("%0*d", length($NF), ($NF+1)); print}')
+          sed -i '8s/.*/default: $NextReleaseVersion/' .github/workflows/release2.yml
+          sed -i '12s/.*/default: $NextDevVersion/' .github/workflows/release2.yml
+          git add .github/workflows/release.yml
           git add diameter/pom.xml
           git commit -m "release version ${{ github.event.inputs.developmentVersion }}"
-          git push      
+          git push
