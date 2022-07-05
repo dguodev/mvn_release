@@ -1,0 +1,29 @@
+name: Release2
+on:
+  workflow_dispatch:
+    inputs:
+      releaseVersion:
+        description: Release version
+        required: true
+      developmentVersion:
+        description: Post release development version
+        required: true
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: Configure Git User
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"            
+          sed -i ':a;N;$!ba; s|<revision>.*<\/revision>|<revision>${{ github.event.inputs.releaseVersion }}<\/revision>|g' diameter/pom.xml
+          git add diameter/pom.xml
+          git commit -m "release version ${{ github.event.inputs.releaseVersion }}"
+          git push      
+      - name: Create release Note
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.event.inputs.releaseVersion }}
+          body: |
+            Relaese By: ${{github.actor}}
+            SHA: ${{github.sha}}
