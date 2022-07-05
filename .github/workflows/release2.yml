@@ -5,6 +5,7 @@ on:
       releaseVersion:
         description: Release version
         required: true
+        default: ""
       developmentVersion:
         description: Post release development version
         required: true
@@ -14,7 +15,7 @@ jobs:
     steps:      
       - name: Checkout Source Code
         uses: actions/checkout@v2
-      - name: Configure Git User
+      - name: Release version
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"            
@@ -29,3 +30,9 @@ jobs:
           body: |
             Relaese By: ${{github.actor}}
             SHA: ${{github.sha}}
+      - name: Update to development version
+        run: |
+          sed -i ':a;N;$!ba; s|<revision>.*<\/revision>|<revision>${{ github.event.inputs.developmentVersion }}<\/revision>|g' diameter/pom.xml
+          git add diameter/pom.xml
+          git commit -m "release version ${{ github.event.inputs.developmentVersion }}"
+          git push      
