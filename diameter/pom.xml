@@ -14,7 +14,7 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
         <project.scm.id>github</project.scm.id>
-        <revision>1.6.2</revision>
+        <revision>1.6.3-Snapshot</revision>
     </properties>
 
     <dependencies>
